@@ -1,0 +1,509 @@
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  {{ 'hero-slideshow.css' | asset_url | stylesheet_tag }}
+<style>
+.slider-height{
+  height: {{ section.settings.slider_height_desktop }}px;
+}  
+.hero-section{
+  position: relative;
+}
+
+.logo-position {
+    position: absolute;
+    z-index: 0;
+    top:40px;
+    left: 30px;
+    right: 30px;
+}
+.slider-image img {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+.hero-section .hero-title {
+    margin: 4px 0;
+    line-height: 3.5rem;
+}
+.hero-section h3{
+  margin: 4px 0;
+}
+.hero-section h2{
+  margin: 4px 0;
+}
+.hero-section .hero-btn {
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.logo-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-block img {
+    max-width: 150px;
+}
+@media screen and (max-width: 1099px){
+
+}
+@media screen and (max-width: 840px){
+
+}
+@media screen and (max-width: 767px){
+
+}
+@media screen and (max-width: 640px){
+  
+}
+@media screen and (max-width: 575px){
+  .logo-position {
+    top:20px;
+    left: 15px;
+    right: 30px;
+}
+  .logo-block img {
+    max-width: 100px;
+}
+}
+
+
+  
+@media screen and (max-width: 1099px){
+.slider-height{
+  height: {{ section.settings.slider_height_large_lap }}px;
+}  
+}
+
+@media screen and (max-width: 767px){
+.slider-height{
+  height: {{ section.settings.slider_height_tablet }}px;
+}  
+}
+
+@media screen and (max-width: 575px){
+.slider-height{
+    height: {{ section.settings.slider_height_mobile }}px;
+  }  
+}
+
+
+
+  .swiper-button-next, .swiper-button-prev {
+    background: #7D4959;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+}
+  .swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 20px;
+}
+</style>
+
+<section class="hero-section">
+
+  <div class="outer-block">
+    <div class="swiper heroSwiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          
+        <div class="swiper-slide" {{ block.shopify_attributes }}>
+          <div class="slider-height">
+            <div class="slider-image slider-bg-overlay-{{ block.id }}">
+               {% if block.settings.slider_image != blank %}
+              <img class="slider-image-position-{{ block.id }}" src="{{ block.settings.slider_image | img_url: 'master' }}" height="100%" width="auto">
+               {% endif %}
+            </div>
+            <div class="page-width content-position-{{ block.id }}">
+              <div class="inner-content-{{ block.id }}">
+                <h3 class="sub-title-{{ block.id }}">{{ block.settings.sub_title }}</h3>
+                <h1 class="hero-title"><span class="yello-text-{{ block.id }}">{{ block.settings.first_herotitle_text }}</span> <span class="white-text-{{ block.id }}">{{ block.settings.second_herotitle_text }}</span></h1>
+                <h2 class="extra-title-{{ block.id }}">{{ block.settings.extra_title_text }}</h2>
+                <p class="hero-descripiton-{{ block.id }}">{{ block.settings.description }}</p>
+                <a class="hero-btn hero-button-{{ block.id }}" href="{{ block.settings.button_url }}">{{ block.settings.button_label }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+<style>
+.slider-image-position-{{ block.id }}{
+    object-position: {{ block.settings.desktop_position_x }}% {{ block.settings.desktop_position_y }}%;
+    object-fit: cover;
+}
+.slider-bg-overlay-{{ block.id }}::after {
+    content: "";
+    background: {{ block.settings.bg_overlay_color }};
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: {{ block.settings.bg_ovarlay_opacity }};
+}
+.content-position-{{ block.id }}{
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: {{ block.settings.content_position_y }};
+  align-items: {{ block.settings.content_position_x }};
+  z-index: 9999;
+  position: relative;
+}
+.inner-content-{{ block.id }} {
+    background: {{ block.settings.content_bg_color }};
+    padding: 15px 30px 20px 30px;
+    max-width: 512px;
+    border-radius: 4px;
+    opacity: 1;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 0px;
+}
+  .sub-title-{{ block.id }}{
+    color: {{ block.settings.sub_title_color }}
+  }
+  .yello-text-{{ block.id }}{
+    color: {{ block.settings.first_herotitle_color }}
+  }
+  .white-text-{{ block.id }}{
+    color: {{ block.settings.scound_herotitle_color }}
+  }
+  .extra-title-{{ block.id }}{
+    color: {{ block.settings.extra_title_color }}
+  }
+  .hero-descripiton-{{ block.id }}{
+    color: {{ block.settings.description_color }}
+  }
+  .hero-button-{{ block.id }}{
+        background: {{ block.settings.button_normal_color }};
+    color: {{ block.settings.button_text_normal_color }};
+  }
+  .hero-button-{{ block.id }}:hover{
+        background: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_text_hover_color }};
+  }
+@media screen and (max-width: 575px){
+  .slider-image-position-{{ block.id }}{
+    object-position: {{ block.settings.mobile_position_x }}% {{ block.settings.mobile_position_y }}%;
+  }
+}
+</style>
+        {% endfor %}
+      </div>
+      <!-- Slider Button -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".heroSwiper", {
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+{% schema %}
+  {
+    "name": "Hero Slider",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Slider Height Management"
+      },
+      {
+        "type": "range",
+        "id": "slider_height_desktop",
+        "label": "Slider on Desktop",
+        "min": 300,
+        "max": 1000,
+        "step": 10,
+        "default": 700,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "slider_height_large_lap",
+        "label": "Slider on laptop",
+        "min": 300,
+        "max": 1000,
+        "step": 10,
+        "default": 600,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "slider_height_tablet",
+        "label": "Slider on tablet",
+        "min": 300,
+        "max": 1000,
+        "step": 10,
+        "default": 350,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "slider_height_mobile",
+        "label": "Slider on Mobile",
+        "min": 300,
+        "max": 1000,
+        "step": 10,
+        "default": 300,
+        "unit": "px"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Slider",
+        "name": "Slider",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "slider_image",
+            "label": "Slider Image"
+          },
+          {
+            "type": "header",
+            "content": "Slider Image Position Managment"
+          },
+          {
+            "type": "range",
+            "id": "desktop_position_x",
+            "label": "Desktop Position X",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 50,
+            "unit": "%"
+          },
+          {
+            "type": "range",
+            "id": "desktop_position_y",
+            "label": "Desktop Position Y",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 50,
+            "unit": "%"
+          },
+          {
+            "type": "range",
+            "id": "mobile_position_x",
+            "label": "Mobile Position X",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 50,
+            "unit": "%"
+          },
+          {
+            "type": "range",
+            "id": "mobile_position_y",
+            "label": "Mobile Position Y",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 50,
+            "unit": "%"
+          },
+          {
+            "type": "color",
+            "id": "bg_overlay_color",
+            "label": "Background Overlay Color",
+            "default": "#000"
+          },
+          {
+            "type": "range",
+            "id": "bg_ovarlay_opacity",
+            "min": 0,
+            "max": 1,
+            "step": 0.1,
+            "label": "Background Overlay Opacity",
+            "default": 0
+          },
+          {
+            "type": "header",
+            "content": "Slider Content Settings"
+          },
+          {
+            "type": "select",
+            "id": "content_position_x",
+            "label": "Content Position X",
+            "options": [
+              {
+                "value": "start",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "end",
+                "label": "Right"
+              }
+            ],
+            "default": "start"
+          },
+          {
+            "type": "select",
+            "id": "content_position_y",
+            "label": "Content Position Y",
+            "options": [
+              {
+                "value": "start",
+                "label": "Top"
+              },
+              {
+                "value": "center",
+                "label": "Middle"
+              },
+              {
+                "value": "end",
+                "label": "Bottom"
+              }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "color_background",
+            "id": "content_bg_color",
+            "label": "Content Background Color",
+            "default": "#ffffffed"
+          },
+          {
+            "type": "header",
+            "content": "Content Management"
+          },
+          {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Sub Title",
+            "default": "Welcome to"
+          },
+          {
+            "type": "color",
+            "id": "sub_title_color",
+            "label": "Sub Title Color",
+            "default": "#232323"
+          },
+          {
+            "type": "text",
+            "id": "first_herotitle_text",
+            "label": "First Hero Title",
+            "default": "The Throne"
+          },
+          {
+            "type": "color",
+            "id": "first_herotitle_color",
+            "label": "First Hero Title Color",
+            "default": "#1287C8"
+          },
+          {
+            "type": "text",
+            "id": "second_herotitle_text",
+            "label": "Scound Hero Title",
+            "default": "Hoops"
+          },
+          {
+            "type": "color",
+            "id": "scound_herotitle_color",
+            "label": "Scound Hero Title Color",
+            "default": "#232323"
+          },
+          {
+            "type": "text",
+            "id": "extra_title_text",
+            "label": "Extra Title",
+            "default": "National Championsip"
+          },
+          {
+            "type": "color",
+            "id": "extra_title_color",
+            "label": "Extra Title Color",
+            "default": "#232323"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "A high school Football National Championsip created for the players, by the players."
+          },
+          {
+            "type": "color",
+            "id": "description_color",
+            "label": "Description Color",
+            "default": "#232323"
+          },
+          {
+            "type": "header",
+            "content": "Button Managment"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Learn More"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          },
+          {
+            "type": "color",
+            "id": "button_normal_color",
+            "label": "Button Normal Color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "button_hover_color",
+            "label": "Button Hover Color",
+            "default": "#FFFF00"
+          },
+          {
+            "type": "color",
+            "id": "button_text_normal_color",
+            "label": "Button Label Normal Color",
+            "default": "#232323",
+          },
+          {
+            "type": "color",
+            "id": "button_text_hover_color",
+            "label": "Button Text Hover Color",
+            "default": "#232328"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Silder",
+        "blocks": [
+          {
+            "type": "Slider"
+          },
+          {
+            "type": "Slider"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
